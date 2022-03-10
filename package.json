@@ -1,0 +1,53 @@
+{
+  "scripts": {
+    "compile": "truffle compile",
+    "test": "truffle test --stacktrace",
+    "deploy": "yarn deploy:dev",
+    "deploy:mainnet": "truffle migrate --network live",
+    "deploy:ropsten": "truffle migrate --network ropsten",
+    "deploy:rinkeby": "truffle migrate --network rinkeby",
+    "deploy:goerli": "truffle migrate --network goerli",
+    "deploy:polygon": "truffle migrate --network polygon",
+    "deploy:mumbai": "truffle migrate --network mumbai",
+    "deploy:dev": "truffle migrate --network development",
+    "reset": "truffle migrate --network development --reset",
+    "verify:mainnet": "truffle run verify ACR --network live",
+    "verify:ropsten": "truffle run verify ACR --network ropsten",
+    "verify:rinkeby": "truffle run verify ACR --network rinkeby",
+    "verify:goerli": "truffle run verify ACR --network goerli",
+    "verify:polygon": "truffle run verify ACR --network polygon",
+    "verify:mumbai": "truffle run verify ACR --network mumbai",
+    "lint:solidity": "solhint contracts/**/*.sol",
+    "lint:javascript": "eslint .",
+    "lint": "yarn lint:solidity; yarn lint:javascript",
+    "prettier:solidity": "prettier --write contracts/**/*.sol",
+    "coverage": "truffle run coverage",
+    "ganache": "ganache-cli"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "~4.5.0",
+    "@truffle/hdwallet-provider": "~2.0.3",
+    "dotenv": "~16.0.0",
+    "truffle": "~5.5.3"
+  },
+  "devDependencies": {
+    "bn-chai": "^1.0.1",
+    "bn.js": "^5.2.0",
+    "chai": "^4.3.6",
+    "eslint": "^8.10.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "mocha": "^9.2.1",
+    "prettier": "^2.5.1",
+    "prettier-plugin-solidity": "^1.0.0-beta.19",
+    "solhint": "^3.3.7",
+    "solhint-plugin-prettier": "^0.0.5",
+    "solidity-coverage": "^0.7.20",
+    "truffle-plugin-verify": "^0.5.22"
+  }
+}
