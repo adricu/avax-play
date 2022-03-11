@@ -21,7 +21,7 @@
 require("dotenv").config();
 
 const HDWalletProvider = require("@truffle/hdwallet-provider");
-const {INFURA_API_KEY, INFURA_API_SECRET, MNEMONIC, PRIVATE_KEY, ETHERSCAN_API_KEY, POLIGONSCAN_API_KEY} = process.env;
+const {INFURA_API_KEY, INFURA_API_SECRET, MNEMONIC, PRIVATE_KEY, ETHERSCAN_API_KEY, POLIGONSCAN_API_KEY, SNOWTRACE_API_KEY} = process.env;
 
 const getEthereumWallet = (network) => {
   return getWallet(`wss://:${INFURA_API_SECRET}@${network}.infura.io/ws/v3/${INFURA_API_KEY}`);
@@ -54,7 +54,7 @@ module.exports = {
       port: 8545, // Standard Ethereum port (default: none)
       network_id: "*" // Any network (default: none)
     },
-    live: {
+    ethereum: {
       networkCheckTimeout: 10000,
       provider: () => {
         return getEthereumWallet("mainnet");
@@ -146,6 +146,30 @@ module.exports = {
       timeoutBlocks: 2000,
       skipDryRun: true // Skip dry run before migrations? (default: false for public nets )
       // websocket: true
+    },
+    avalanche: {
+      networkCheckTimeout: 10000,
+      provider: () => {
+        return getWallet("https://api.avax.network/ext/bc/C/rpc");
+      },
+      addressIndex: 0,
+      network_id: 43114,
+      timeoutBlocks: 200,
+      confirmations: 5,
+      gas: 3000000,
+      skipDryRun: true // Skip dry run before migrations? (default: false for public nets )
+    },
+    fuji: {
+      networkCheckTimeout: 10000,
+      provider: () => {
+        return getWallet("https://api.avax-test.network/ext/bc/C/rpc");
+      },
+      addressIndex: 0,
+      network_id: 43113,
+      timeoutBlocks: 200,
+      confirmations: 2,
+      gas: 3000000,
+      skipDryRun: true // Skip dry run before migrations? (default: false for public nets )
     }
   },
 
@@ -168,7 +192,8 @@ module.exports = {
 
   api_keys: {
     etherscan: ETHERSCAN_API_KEY,
-    polygonscan: POLIGONSCAN_API_KEY
+    polygonscan: POLIGONSCAN_API_KEY,
+    snowtrace: SNOWTRACE_API_KEY
   },
   plugins: ["truffle-plugin-verify", "solidity-coverage"]
 };
